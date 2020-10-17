@@ -92,7 +92,7 @@ module.exports = function (Posts) {
 			'uid', 'username', 'fullname', 'userslug',
 			'reputation', 'postcount', 'topiccount', 'picture',
 			'signature', 'banned', 'banned:expire', 'status',
-			'lastonline', 'groupTitle',
+			'lastonline', 'groupTitle', 'ethereumwallet',
 		];
 		const result = await plugins.fireHook('filter:posts.addUserFields', {
 			fields: fields,

@@ -28,7 +28,7 @@ module.exports = function (User) {
 		'aboutme', 'signature', 'uploadedpicture', 'profileviews', 'reputation',
 		'postcount', 'topiccount', 'lastposttime', 'banned', 'banned:expire',
 		'status', 'flags', 'followerCount', 'followingCount', 'cover:url',
-		'cover:position', 'groupTitle',
+		'cover:position', 'groupTitle', 'ethereumwallet',
 	];
 
 	User.guestData = {
@@ -36,6 +36,7 @@ module.exports = function (User) {
 		username: '[[global:guest]]',
 		userslug: '',
 		fullname: '[[global:guest]]',
+		ethereumwallet: '[[global:guest]]',
 		email: '',
 		'icon:text': '?',
 		'icon:bgColor': '#aaa',

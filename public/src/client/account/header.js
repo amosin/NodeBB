@@ -29,6 +29,13 @@ define('forum/account/header', [
 			toggleFollow('unfollow');
 		});
 
+		components.get('account/tip').on('click', function () {
+			toggleTip();
+		});
+		components.get('account/metamask').on('click', function () {
+			toggleMetamaskConnect();
+		});
+
 		components.get('account/chat').on('click', function () {
 			socket.emit('modules.chats.hasPrivateChat', ajaxify.data.uid, function (err, roomId) {
 				if (err) {
@@ -116,6 +123,56 @@ define('forum/account/header', [
 		});
 		return false;
 	}
+
+	async function toggleTip() {
+        	const web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
+       		ethEnabled()
+		if (!ethEnabled()) {
+			 app.alertError("Please install an Ethereum-compatible browser or extension like <a href='https://metamask.io/download.html'>Metamask</a> to use this dApp!");
+		}
+        	const user_address = await web3.eth.getAccounts()
+		if (typeof user_address === 'undefined') {
+		     return app.alertError('You need to log in MetaMask to use this feature.')
+		}
+                // get value from form
+		var ethValue = $('#ethValue').val()
+		if (!ethValue) {
+			 return app.alertError('DO YOU WANT TO SEND 0? That\'s mean!')
+		}
+		web3.eth.sendTransaction({
+		    from: user_address[0],
+		    to: ajaxify.data.ethereumwallet,
+		    value: web3.utils.toWei(ethValue, 'ether'),
+		  }, function (err, transactionHash) {
+                    if (err) return app.alertError(err.message);
+                    return app.alertSuccess(`<a href='https://etherscan.io/tx/${transactionHash}'>${transactionHash}</a>`);
+                  })
+		$('#exampleModalCenter').modal('toggle');
+		return false;
+	}
+
+	async function toggleMetamaskConnect() {
+		const web3 = new Web3(Web3.givenProvider)
+                ethEnabled()
+                if (!ethEnabled()) {
+			 app.alertError("Please install an Ethereum-compatible browser or extension like <a href='https://metamask.io/download.html'>Metamask</a> to use this dApp!");
+                }
+                const user_address = await web3.eth.getAccounts()
+                if (typeof user_address === 'undefined') {
+                    return app.alertError('You need to log in MetaMask to use this feature.')
+                }
+		$('#inputEthereumWallet').val(user_address[0])
+		return false;
+	}
+  
+	function ethEnabled() {
+	    if (window.ethereum) {
+	      window.web3 = new Web3(window.ethereum);
+	      window.ethereum.enable();
+	      return true;
+	    }
+	    return false;
+	  }
 
 	function banAccount() {
 		Benchpress.parse('admin/partials/temporary-ban', {}, function (html) {

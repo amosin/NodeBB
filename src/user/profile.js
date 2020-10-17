@@ -14,7 +14,7 @@ module.exports = function (User) {
 	User.updateProfile = async function (uid, data) {
 		let fields = [
 			'username', 'email', 'fullname', 'website', 'location',
-			'groupTitle', 'birthday', 'signature', 'aboutme',
+			'groupTitle', 'birthday', 'signature', 'aboutme', 'ethereumwallet',
 		];
 		if (!data.uid) {
 			throw new Error('[[error:invalid-update-uid]]');
@@ -42,6 +42,8 @@ module.exports = function (User) {
 				return await updateUsername(updateUid, data.username);
 			} else if (field === 'fullname') {
 				return await updateFullname(updateUid, data.fullname);
+			} else if (field === 'ethereumwallet') {
+				return await updateEthereumwallet(updateUid, data.ethereumwallet);
 			}
 
 			await User.setUserField(updateUid, field, data[field]);
@@ -57,6 +59,7 @@ module.exports = function (User) {
 		await isAboutMeValid(callerUid, data);
 		await isSignatureValid(callerUid, data);
 		isFullnameValid(data);
+		isEthereumwalletValid(data);
 		isLocationValid(data);
 		isBirthdayValid(data);
 		isGroupTitleValid(data);
@@ -143,6 +146,12 @@ module.exports = function (User) {
 	function isFullnameValid(data) {
 		if (data.fullname && (validator.isURL(data.fullname) || data.fullname.length > 255)) {
 			throw new Error('[[error:invalid-fullname]]');
+		}
+	}
+
+	function isEthereumwalletValid(data) {
+		if (data.ethereumwallet && (validator.isURL(data.ethereumwallet) || data.ethereumwallet.length > 64)) {
+			throw new Error('[[error:invalid-ethereumwallet]]');
 		}
 	}
 
@@ -263,6 +272,11 @@ module.exports = function (User) {
 	async function updateFullname(uid, newFullname) {
 		const fullname = await User.getUserField(uid, 'fullname');
 		await updateUidMapping('fullname', uid, newFullname, fullname);
+	}
+
+	async function updateEthereumwallet(uid, newEthereumwallet) {
+		const ethereumwallet = await User.getUserField(uid, 'ethereumwallet');
+		await updateUidMapping('ethereumwallet', uid, newEthereumwallet, ethereumwallet);
 	}
 
 	User.changePassword = async function (uid, data) {

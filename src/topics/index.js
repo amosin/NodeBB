@@ -84,7 +84,7 @@ Topics.getTopicsByTids = async function (tids, options) {
 		guestHandles,
 	] = await Promise.all([
 		user.getSettings(uid),
-		user.getUsersFields(uids, ['uid', 'username', 'fullname', 'userslug', 'reputation', 'postcount', 'picture', 'signature', 'banned', 'status']),
+		user.getUsersFields(uids, ['uid', 'username', 'fullname', 'ethereumwallet', 'userslug', 'reputation', 'postcount', 'picture', 'signature', 'banned', 'status']),
 		user.getMultipleUserSettings(uids),
 		categories.getCategoriesFields(cids, ['cid', 'name', 'slug', 'icon', 'image', 'imageClass', 'bgColor', 'color', 'disabled']),
 		Topics.hasReadTopics(tids, uid),

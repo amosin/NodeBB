@@ -36,6 +36,7 @@ define('forum/account/edit', ['forum/account/header', 'translator', 'components'
 			groupTitle: $('#groupTitle').val(),
 			signature: $('#inputSignature').val(),
 			aboutme: $('#inputAboutMe').val(),
+			ethereumwallet: $('#inputEthereumWallet').val(),
 		};
 
 		userData.groupTitle = JSON.stringify(Array.isArray(userData.groupTitle) ? userData.groupTitle : [userData.groupTitle]);
