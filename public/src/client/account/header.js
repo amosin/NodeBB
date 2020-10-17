@@ -153,7 +153,7 @@ define('forum/account/header', [
 
 	async function toggleMetamaskConnect() {
 		const web3 = new Web3(Web3.givenProvider)
-                ethEnabled()
+                await ethEnabled()
                 if (!ethEnabled()) {
 			 app.alertError("Please install an Ethereum-compatible browser or extension like <a href='https://metamask.io/download.html'>Metamask</a> to use this dApp!");
                 }
@@ -165,10 +165,10 @@ define('forum/account/header', [
 		return false;
 	}
   
-	function ethEnabled() {
+	async function ethEnabled() {
 	    if (window.ethereum) {
 	      window.web3 = new Web3(window.ethereum);
-	      window.ethereum.enable();
+	      await window.ethereum.enable();
 	      return true;
 	    }
 	    return false;

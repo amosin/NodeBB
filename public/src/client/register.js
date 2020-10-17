@@ -11,7 +11,12 @@ define('forum/register', ['translator', 'zxcvbn'], function (translator, zxcvbn)
 		var username = $('#username');
 		var password = $('#password');
 		var password_confirm = $('#password-confirm');
+		var ethereumwallet = $('#ethereumwallet');
 		var register = $('#register');
+
+                $('#connectmetamask').on('click', function () {
+                        toggleMetamaskConnect();
+                });
 
 		handleLanguageOverride();
 
@@ -53,6 +58,29 @@ define('forum/register', ['translator', 'zxcvbn'], function (translator, zxcvbn)
 			}
 		});
 
+        	async function toggleMetamaskConnect() {
+        	        const web3 = new Web3(Web3.givenProvider)
+       		         await ethEnabled()
+         	         if (!ethEnabled()) {
+       	                    app.alertError("Please install an Ethereum-compatible browser or extension like <a href='https://metamask.io/download.html'>Metamask</a> to use this dApp!");
+        	         }
+       	 	         const user_address = await web3.eth.getAccounts()
+         	         if (typeof user_address === 'undefined') {
+         	            return app.alertError('You need to log in MetaMask to use this feature.')
+       		         }
+    	            $('#ethereumwallet').val(user_address[0])
+    	            return false;
+        	}
+
+	        async function ethEnabled() {
+	            if (window.ethereum) {
+	              window.web3 = new Web3(window.ethereum);
+	              await window.ethereum.enable();
+	              return true;
+	            }
+	            return false;
+	          }
+
 		function validateForm(callback) {
 			validationError = false;
 			validatePassword(password.val(), password_confirm.val());
@@ -90,7 +118,6 @@ define('forum/register', ['translator', 'zxcvbn'], function (translator, zxcvbn)
 							var params = utils.params({ url: data.referrer });
 							params.registered = true;
 							var qs = decodeURIComponent($.param(params));
-
 							window.location.href = pathname + '?' + qs;
 						} else if (data.message) {
 							translator.translate(data.message, function (msg) {

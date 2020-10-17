@@ -5,6 +5,8 @@
 	"help.username_restrictions": "A unique username between %1 and %2 characters. Others can mention you with @<span id='yourUsername'>username</span>.",
 	"help.minimum_password_length": "Your password's length must be at least %1 characters.",
 	"email_address": "Email Address",
+        "help.ethereumwallet": "Connect to Metamask to get wallet address.",
+        "ethereumwallet": "Ethereum Wallet",
 	"email_address_placeholder": "Enter Email Address",
 	"username": "Username",
 	"username_placeholder": "Enter Username",

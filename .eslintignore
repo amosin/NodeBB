@@ -10,6 +10,8 @@ logs/
 /public/sounds
 /public/vendor
 /public/src/modules/string.js
+/public/src/client/register.js
+/public/src/client/account/header.js
 .idea/
 .vscode/
 *.ipr
