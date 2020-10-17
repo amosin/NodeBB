@@ -4,11 +4,13 @@
 const async = require('async');
 const validator = require('validator');
 
+const Web3 = require('web3');
 const utils = require('../utils');
 const meta = require('../meta');
 const db = require('../database');
 const groups = require('../groups');
 const plugins = require('../plugins');
+
 
 module.exports = function (User) {
 	User.updateProfile = async function (uid, data) {
@@ -150,7 +152,9 @@ module.exports = function (User) {
 	}
 
 	function isEthereumwalletValid(data) {
-		if (data.ethereumwallet && (validator.isURL(data.ethereumwallet) || data.ethereumwallet.length > 64)) {
+		const web3 = new Web3(Web3.givenProvider || 'ws://some.local-or-remote.node:8546');
+		const validaddress = web3.utils.isAddress(data.ethereumwallet);
+		if (data.ethereumwallet && (validator.isURL(data.ethereumwallet) || !validaddress)) {
 			throw new Error('[[error:invalid-ethereumwallet]]');
 		}
 	}

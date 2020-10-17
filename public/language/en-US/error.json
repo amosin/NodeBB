@@ -12,6 +12,7 @@
     "invalid-username": "Invalid Username",
     "invalid-email": "Invalid Email",
     "invalid-fullname": "Invalid Fullname",
+    "invalid-ethereumwallet": "Invalid Ethereum Address",
     "invalid-location": "Invalid Location",
     "invalid-birthday": "Invalid Birthday",
     "invalid-title": "Invalid title",

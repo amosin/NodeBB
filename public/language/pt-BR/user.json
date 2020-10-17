@@ -16,6 +16,7 @@
     "delete_this_account_confirm": "Você tem certeza que deseja excluir essa conta? <br /><strong>Essa ação é irreversível e você não poderá recuperar quaisquer dados</strong><br /><br />",
     "account-deleted": "Conta excluída",
     "fullname": "Nome Completo",
+    "ethereumwallet": "Carteira do Ethereum",
     "website": "Website",
     "location": "Local",
     "age": "Idade",
