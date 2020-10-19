@@ -65,6 +65,26 @@ define('forum/topic', [
 
 		handleBookmark(tid);
 
+        //console.log(ajaxify.data);
+        $(function(){
+          $('.modal-content').keypress(function(e){
+            if(e.which == 13) {
+                document.getElementById("sendcrypto").click();
+            }
+          })
+        })
+        var wallet = {};
+        $(document).on("click", ".open-sendTipModal", function () {
+            var postUsername=$(this).data('username');
+            wallet=$(this).data('wallet');
+            $(".modal-body #postUsername").text(postUsername);
+            $(".modal-body #postEthereumWallet").text(wallet);
+        });
+
+            components.get('account/tip').on('click', function () {                 
+                toggleTip(wallet);                                                        
+            });      
+
 		$(window).on('scroll', updateTopicTitle);
 
 		handleTopicSearch();
@@ -141,6 +161,47 @@ define('forum/topic', [
 				app.removeAlert('bookmark');
 			}, 10000);
 		}
+	}
+
+	async function toggleTip(toAddress) {
+        	const web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
+       		ethEnabled()
+		if (!ethEnabled()) {
+			 app.alertError("Please install an Ethereum-compatible browser or extension like <a href='https://metamask.io/download.html'>Metamask</a> to use this dApp!");
+		}
+        	const user_address = await web3.eth.getAccounts()
+		if (typeof user_address === 'undefined') {
+		     return app.alertError('You need to log in MetaMask to use this feature.')
+		}
+                // get value from form
+		var ethValue = $('#ethValue').val()
+		if (!ethValue) {
+			 return app.alertError('DO YOU WANT TO SEND 0? That\'s mean!')
+		}
+        const validToAddress = web3.utils.isAddress(toAddress);
+        if (!validToAddress) {
+            return app.alertError('User does not have valid Ethereum address')
+        } else {
+		web3.eth.sendTransaction({
+		    from: user_address[0],
+		    to: toAddress,
+		    value: web3.utils.toWei(ethValue, 'ether'),
+		  }, function (err, transactionHash) {
+                    if (err) return app.alertError(err.message);
+                    return app.alertSuccess(`<a href='https://etherscan.io/tx/${transactionHash} target=\"_blank\" '>${transactionHash}</a>`);
+                  })
+		$('#tipModalCenter').modal('toggle');
+        }
+		return false;
+	}
+
+	async function ethEnabled() {
+	    if (window.ethereum) {
+	      window.web3 = new Web3(window.ethereum);
+	      await window.ethereum.enable();
+	      return true;
+	    }
+	    return false;
 	}
 
 	function addBlockQuoteHandler() {
