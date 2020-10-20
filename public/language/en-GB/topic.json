@@ -159,5 +159,13 @@
 	"diffs.original-revision": "original revision",
 
 	"timeago_later": "%1 later",
-	"timeago_earlier": "%1 earlier"
+	"timeago_earlier": "%1 earlier",
+    "send_crypto_tip": "Tip Crypto",
+    "message_about_to_send": "You are about to send a TIP to user:",
+    "no_crypto_user": "NO ONE! - Something is wrong...",
+    "user_no_config_wallet": "The user you are trying to send a tip hasn't configured their wallet address here yet.",
+    "crypto_amount_to_send": "ETH Amount: ",
+    "wallet_address": "Wallet Address:",
+    "modal_send": "Send",
+    "modal_close": "Close"
 }

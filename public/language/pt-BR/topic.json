@@ -135,5 +135,13 @@
     "diffs.current-revision": "revisão atual",
     "diffs.original-revision": "revisão original",
     "timeago_later": "%1 depois",
-    "timeago_earlier": "%1 earlier"
+    "timeago_earlier": "%1 earlier",
+    "send_crypto_tip": "Enviar Criptomoedas",
+    "message_about_to_send": "Você está prestes a enviar crypto ao usuário:",
+    "no_crypto_user": "NINGUÉM! - Algo está errado...",
+    "user_no_config_wallet": "O usuário para o qual você está tentando enviar crypto ainda não configurou o endereço da carteira dele aqui.",
+    "crypto_amount_to_send": "Quantidade:",
+    "wallet_address": "Endereço da carteira:",
+    "modal_send": "Enviar",
+    "modal_close": "Fechar"
 }
