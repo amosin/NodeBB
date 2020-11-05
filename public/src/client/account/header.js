@@ -20,6 +20,9 @@ define('forum/account/header', [
 		if (isAdminOrSelfOrGlobalMod) {
 			setupCoverPhoto();
 		}
+        if (ajaxify.data.ethereumwallet) {
+            $("#postEthereumWallet").text(ajaxify.data.ethereumwallet);
+        }
 
 		components.get('account/follow').on('click', function () {
 			toggleFollow('follow');
