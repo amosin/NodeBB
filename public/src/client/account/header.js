@@ -153,11 +153,13 @@ define('forum/account/header', [
                 data: {
                     from: user_address[0],
                     from_uid: ajaxify.data.yourid,
+                    from_username: ajaxify.data.username,
                     to: ajaxify.data.ethereumwallet,
                     to_uid: ajaxify.data.uid,
                     value: ethValue,
                     thash: transactionHash,
-                    coin: 'eth'
+                    coin: 'eth',
+                    tdate: Date.now()
                 },
                 type: 'POST',
                 headers: {

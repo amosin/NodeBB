@@ -8,7 +8,6 @@ var accountsController = {
 	settings: require('./accounts/settings'),
 	groups: require('./accounts/groups'),
 	follow: require('./accounts/follow'),
-	tip: require('./accounts/tip'),
 	posts: require('./accounts/posts'),
 	notifications: require('./accounts/notifications'),
 	chats: require('./accounts/chats'),

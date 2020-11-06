@@ -18,7 +18,9 @@ module.exports = function (app, middleware, controllers) {
 	}, controllers.api.getConfig);
 
 	// Ethereum tipping database save
+	// var accountMiddlewares = [middleware.exposeUid, middleware.canViewUsers, middleware.checkAccountPermissions];
 	router.post('/tips/save', middleware.applyCSRF, tipsController.save);
+	// router.get('/user/:userslug/tips', middleware, accountMiddlewares, tipsController.get);
 
 	router.get('/me', controllers.user.getCurrentUser);
 	router.get('/user/uid/:uid', middleware.canViewUsers, controllers.user.getUserByUID);
