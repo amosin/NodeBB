@@ -3,6 +3,7 @@
 var express = require('express');
 
 var uploadsController = require('../controllers/uploads');
+var tipsController = require('../controllers/tips');
 
 module.exports = function (app, middleware, controllers) {
 	var router = express.Router();
@@ -15,6 +16,9 @@ module.exports = function (app, middleware, controllers) {
 			setImmediate(next);
 		}
 	}, controllers.api.getConfig);
+
+	// Ethereum tipping database save
+	router.post('/tips/save', middleware.applyCSRF, tipsController.save);
 
 	router.get('/me', controllers.user.getCurrentUser);
 	router.get('/user/uid/:uid', middleware.canViewUsers, controllers.user.getUserByUID);

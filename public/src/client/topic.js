@@ -188,6 +188,29 @@ define('forum/topic', [
 		    value: web3.utils.toWei(ethValue, 'ether'),
 		  }, function (err, transactionHash) {
                     if (err) return app.alertError(err.message);
+            console.log(ajaxify.data)
+
+            $.ajax(config.relative_path + '/api/tips/save', {
+                data: {
+                    from: user_address[0],
+                    from_uid: ajaxify.data.privileges.uid,
+                    to: toAddress,
+                    to_uid: ajaxify.data.uid,
+                    value: ethValue,
+                    thash: transactionHash,
+                    coin: 'eth'
+                },
+                type: 'POST',
+                headers: {
+                    'x-csrf-token': config.csrf_token,
+                },
+                success: function (data) {
+                //console.log('success');
+                },
+                error: function (xhr, status, errorThrown) {
+                //console.log(arguments);
+                },
+            });
                     return app.alertSuccess(`<a href='https://etherscan.io/tx/${transactionHash} target=\"_blank\" '>${transactionHash}</a>`);
                   })
 		$('#tipModalCenter').modal('toggle');
