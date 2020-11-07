@@ -63,7 +63,7 @@
 	"account/blocks": "Blocked users for %1",
 	"account/uploads": "Uploads by %1",
 	"account/sessions": "Login Sessions",
-
+    "account/tips": "Crypto Tipping",
 	"confirm": "Email Confirmed",
 
 	"maintenance.text": "%1 is currently undergoing maintenance. Please come back another time.",

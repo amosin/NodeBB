@@ -57,6 +57,7 @@
     "account/blocks": "Utilizadores bloqueados para %1",
     "account/uploads": "Carregamentos feitos por %1",
     "account/sessions": "Sessões ativas",
+    "account/tips": "Histórico de Transações",
     "confirm": "E-mail confirmado",
     "maintenance.text": "%1 está atualmente sobre manutenção.<br>Por favor, volta noutra altura.",
     "maintenance.messageIntro": "Adicionalmente, o administrador deixou esta mensagem:",

@@ -1,0 +1,8 @@
+{
+    "received.notification_title": "You received <strong>%1 %2</strong> from <strong>%3</strong>",
+    "from": "From",
+    "date": "Date",
+    "amount": "Amount",
+    "coin": "Coin",
+    "transaction": "Transaction"
+}

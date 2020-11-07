@@ -158,8 +158,7 @@ define('forum/account/header', [
                     to_uid: ajaxify.data.uid,
                     value: ethValue,
                     thash: transactionHash,
-                    coin: 'eth',
-                    tdate: Date.now()
+                    coin: 'eth'
                 },
                 type: 'POST',
                 headers: {

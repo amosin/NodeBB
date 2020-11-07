@@ -60,5 +60,6 @@
     "confirm": "Email vérifié",
     "maintenance.text": "%1 est en maintenance. Veuillez revenir un peu plus tard.",
     "maintenance.messageIntro": "De plus, l'administrateur a laissé ce message :",
+    "account/tips": "Crypto Tipping",
     "throttled.text": "%1 est actuellement indisponible en raison d'une charge excessive. Merci de réessayer plus tard."
 }

@@ -1,0 +1,8 @@
+{
+    "received.notification_title": "Você recebeu <strong>%1 %2</strong> de <strong>%3</strong>",
+    "from": "Remetente",
+    "date": "Data",
+    "amount": "Quantidade",
+    "coin": "Ativo",
+    "transaction": "Transação"
+}

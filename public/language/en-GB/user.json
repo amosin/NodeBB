@@ -48,7 +48,10 @@
 	"follow": "Follow",
 	"unfollow": "Unfollow",
 	"more": "More",
-
+    "tip": "TIP $",                                                             
+    "tips": "Crypto Tipping",                                                   
+    "tips.description": "List of <strong> Received </strong> Crypto",           
+    "has_no_tips": "You haven't received any crypto yet! What are you waiting for? Post something!",
 	"profile_update_success": "Profile has been updated successfully!",
 	"change_picture": "Change Picture",
 	"change_username": "Change Username",
